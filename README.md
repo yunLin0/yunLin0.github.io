@@ -21,34 +21,32 @@
 
 ## ✨ 功能特性
 
-<table width="100%">
-<tr><th width="30%">功能</th><th>说明</th></tr>
-<tr><td>🏠 个人主页</td><td>Hero 欢迎区 + 信息卡片网格</td></tr>
-<tr><td>👤 关于我</td><td>个人简介、兴趣爱好</td></tr>
-<tr><td>🛠️ 技能树</td><td>分组彩色标签展示</td></tr>
-<tr><td>📂 项目集</td><td>手动卡片 + GitHub 仓库自动获取</td></tr>
-<tr><td>📅 时间线</td><td>学习/工作经历</td></tr>
-<tr><td>📝 博客</td><td>MDX 文章 + 标签分类 + 阅读进度条</td></tr>
-<tr><td>💬 留言板</td><td>基于 GitHub Discussions</td></tr>
-<tr><td>🔍 全文搜索</td><td>Pagefind 实现（Starlight 内置）</td></tr>
-<tr><td>📊 访客统计</td><td>Umami 隐私友好分析</td></tr>
-<tr><td>🌗 深色模式</td><td>一键切换 + 自动记忆偏好</td></tr>
-<tr><td>🎨 背景图</td><td>动漫背景 + 毛玻璃效果 + 透明度可调</td></tr>
-<tr><td>📡 RSS</td><td>订阅博客更新</td></tr>
-</table>
+| 功能 | 说明 |
+| --- | --- |
+| 🏠 个人主页 | Hero 欢迎区 + 信息卡片网格 |
+| 👤 关于我 | 个人简介、兴趣爱好 |
+| 🛠️ 技能树 | 分组彩色标签展示 |
+| 📂 项目集 | 手动卡片 + GitHub 仓库自动获取 |
+| 📅 时间线 | 学习/工作经历 |
+| 📝 博客 | MDX 文章 + 标签分类 + 阅读进度条 |
+| 💬 留言板 | 基于 GitHub Discussions |
+| 🔍 全文搜索 | Pagefind 实现（Starlight 内置） |
+| 📊 访客统计 | Umami 隐私友好分析 |
+| 🌗 深色模式 | 一键切换 + 自动记忆偏好 |
+| 🎨 背景图 | 动漫背景 + 毛玻璃效果 + 透明度可调 |
+| 📡 RSS | 订阅博客更新 |
 
 ## 🛠️ 技术栈
 
-<table width="100%">
-<tr><th width="15%">层级</th><th width="35%">技术</th><th>用途</th></tr>
-<tr><td>框架</td><td><a href="https://astro.build">Astro</a> v6.4</td><td>静态站点生成，Islands 架构</td></tr>
-<tr><td>主题</td><td><a href="https://starlight.astro.build">Starlight</a> v0.39</td><td>文档风格 UI，内置搜索/暗色模式</td></tr>
-<tr><td>语言</td><td>TypeScript + MDX</td><td>类型安全 + 丰富内容</td></tr>
-<tr><td>部署</td><td><a href="https://pages.github.com">GitHub Pages</a></td><td>免费托管 + 自动部署</td></tr>
-<tr><td>CI/CD</td><td><a href="https://github.com/features/actions">GitHub Actions</a></td><td>push 自动构建发布</td></tr>
-<tr><td>统计</td><td><a href="https://umami.is">Umami</a></td><td>隐私友好访客分析</td></tr>
-<tr><td>搜索</td><td><a href="https://pagefind.app">Pagefind</a></td><td>静态全文搜索引擎</td></tr>
-</table>
+| 层级 | 技术 | 用途 |
+| --- | --- | --- |
+| 框架 | [Astro](https://astro.build) v6.4 | 静态站点生成，Islands 架构 |
+| 主题 | [Starlight](https://starlight.astro.build) v0.39 | 文档风格 UI，内置搜索/暗色模式 |
+| 语言 | TypeScript + MDX | 类型安全 + 丰富内容 |
+| 部署 | [GitHub Pages](https://pages.github.com) | 免费托管 + 自动部署 |
+| CI/CD | [GitHub Actions](https://github.com/features/actions) | push 自动构建发布 |
+| 统计 | [Umami](https://umami.is) | 隐私友好访客分析 |
+| 搜索 | [Pagefind](https://pagefind.app) | 静态全文搜索引擎 |
 
 ## 📁 项目结构
 
