@@ -51,27 +51,29 @@ export default defineConfig({
             src: 'https://cloud.umami.is/script.js',
           },
         },
-        // 全页面背景图 + 阅读进度条 + 透明度滑块（用 JS 注入，绕过 CSS 层级）
+        // 全页面背景图（静态 style 标签，确保生效）
         {
-          tag: 'script',
-          content: [
-            '(function(){',
-            '  var s=document.createElement("style");',
-            '  var op=localStorage.getItem("bg-opacity")||"0.35";',
-            '  s.textContent="',
-            '    html,body{background:transparent!important;background-color:transparent!important}',
-            '    body::before{content:\\"\\\\";position:fixed;inset:0;background:url(/images/bg.jpg) center/cover no-repeat;opacity:"+op+";z-index:-1;pointer-events:none;transition:opacity .3s}',
-            '    .page,.main-frame,.sidebar-pane,.content-panel,.right-sidebar,.header,main{background:transparent!important;background-color:transparent!important}',
-            '    .sidebar-pane{background:rgba(255,255,255,0.75)!important;background-color:rgba(255,255,255,0.75)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}',
-            '    .content-panel{background:rgba(255,255,255,0.7)!important;background-color:rgba(255,255,255,0.7)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding-top:2rem!important}',
-            '    .right-sidebar{background:rgba(255,255,255,0.75)!important;background-color:rgba(255,255,255,0.75)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-left:1px solid var(--sl-color-gray-6)!important}',
-            '    .header{background:rgba(255,255,255,0.7)!important;background-color:rgba(255,255,255,0.7)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06)!important}',
-            '    [data-theme=\\"dark\\"] .sidebar-pane,[data-theme=\\"dark\\"] .right-sidebar{background:rgba(15,23,42,0.75)!important;background-color:rgba(15,23,42,0.75)!important}',
-            '    [data-theme=\\"dark\\"] .content-panel,[data-theme=\\"dark\\"] .header{background:rgba(15,23,42,0.7)!important;background-color:rgba(15,23,42,0.7)!important}',
-            '  ";',
-            '  document.head.appendChild(s);',
-            '})();',
-          ].join('\n'),
+          tag: 'style',
+          content: `
+            html, body { background: transparent !important; background-color: transparent !important; }
+            body::before {
+              content: '';
+              position: fixed;
+              inset: 0;
+              background: url('/images/bg.jpg') center/cover no-repeat;
+              opacity: 0.35;
+              z-index: -1;
+              pointer-events: none;
+              transition: opacity 0.3s;
+            }
+            .page, .main-frame, main { background: transparent !important; background-color: transparent !important; }
+            .sidebar-pane { background: rgba(255,255,255,0.75) !important; background-color: rgba(255,255,255,0.75) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+            .content-panel { background: rgba(255,255,255,0.7) !important; background-color: rgba(255,255,255,0.7) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-top: 2rem !important; }
+            .right-sidebar { background: rgba(255,255,255,0.75) !important; background-color: rgba(255,255,255,0.75) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-left: 1px solid var(--sl-color-gray-6) !important; }
+            .header { background: rgba(255,255,255,0.7) !important; background-color: rgba(255,255,255,0.7) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.06) !important; }
+            [data-theme="dark"] .sidebar-pane, [data-theme="dark"] .right-sidebar { background: rgba(15,23,42,0.75) !important; background-color: rgba(15,23,42,0.75) !important; }
+            [data-theme="dark"] .content-panel, [data-theme="dark"] .header { background: rgba(15,23,42,0.7) !important; background-color: rgba(15,23,42,0.7) !important; }
+          `,
         },
         // 阅读进度条
         {
@@ -97,6 +99,14 @@ export default defineConfig({
             document.addEventListener('DOMContentLoaded', function() {
               var saved = localStorage.getItem('bg-opacity');
               var initVal = saved !== null ? parseFloat(saved) : 0.35;
+              // 更新背景透明度
+              var styles = document.querySelectorAll('style');
+              for (var i = 0; i < styles.length; i++) {
+                if (styles[i].textContent.indexOf('bg.jpg') !== -1) {
+                  styles[i].textContent = styles[i].textContent.replace(/opacity:\\s*[\\d.]+;\\s*z-index:\\s*-1/, 'opacity: ' + initVal + '; z-index: -1');
+                }
+              }
+              // 创建滑块
               var ctrl = document.createElement('div');
               ctrl.className = 'bg-control';
               ctrl.innerHTML = '<label>背景</label><input type="range" min="0" max="100" value="' + Math.round(initVal * 100) + '"><span class="opacity-value">' + Math.round(initVal * 100) + '%</span>';
@@ -107,9 +117,11 @@ export default defineConfig({
                 var v = slider.value / 100;
                 val.textContent = slider.value + '%';
                 localStorage.setItem('bg-opacity', v);
-                var style = document.querySelector('style');
-                if (style) {
-                  style.textContent = style.textContent.replace(/opacity:[\\.\\d]+;z-index:-1/, 'opacity:' + v + ';z-index:-1');
+                var styles = document.querySelectorAll('style');
+                for (var i = 0; i < styles.length; i++) {
+                  if (styles[i].textContent.indexOf('bg.jpg') !== -1) {
+                    styles[i].textContent = styles[i].textContent.replace(/opacity:\\s*[\\d.]+;\\s*z-index:\\s*-1/, 'opacity: ' + v + '; z-index: -1');
+                  }
                 }
               });
             });
