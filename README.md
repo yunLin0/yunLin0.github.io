@@ -262,100 +262,233 @@ git push → GitHub Actions 自动构建 → 部署到 GitHub Pages
 
 ---
 
-## 📚 学习路线
+## 🎮 学习闯关路线
+
+> 每通关一关，解锁下一关。集齐全部徽章，你就是全栈战士 🏆
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║  🎯 当前进度: ██░░░░░░ 2/8 关  ·  已获得 2/8 枚徽章        ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+---
+
+### ⚔️ 第一关｜召唤师入门 — HTML & CSS 基础
+
+```
+难度: ★☆☆☆☆  |  预计耗时: 2~3 周  |  前置条件: 无
+```
+
+**通关目标**：
+- [ ] 用 HTML 搭出一个完整页面（标题、段落、图片、链接、表单）
+- [ ] 用 CSS 实现 Flexbox 两栏布局 + Grid 九宫格
+- [ ] 给页面加上动画效果（过渡 / 关键帧）
+- [ ] 用 Git 完成一次完整的 commit → push → PR 流程
+
+**推荐装备**：
+- [MDN Web Docs](https://developer.mozilla.org/zh-CN/) — 前端百科全书
+- [freeCodeCamp](https://www.freecodecamp.org/) — 免费交互式课程
+- [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) — Flexbox 图解
 
 <details>
-<summary><b>🟢 第一阶段：前端基础</b></summary>
+<summary>🎁 通关奖励</summary>
 
-- **HTML5**：语义化标签、表单、多媒体
-- **CSS3**：Flexbox、Grid 布局、动画、变量
-- **JavaScript**：ES6+ 语法、DOM 操作、异步编程
-- **Git**：版本控制、分支管理、Pull Request
-
-**推荐资源**：
-- [MDN Web Docs](https://developer.mozilla.org/zh-CN/)
-- [freeCodeCamp](https://www.freecodecamp.org/)
-- [JavaScript.info](https://javascript.info/)
+> 🏅 **「标记使者」徽章** — 你已掌握网页的骨骼与皮肤
 </details>
+
+---
+
+### ⚔️ 第二关｜魔法咏唱 — CSS 进阶
+
+```
+难度: ★★☆☆☆  |  预计耗时: 2~3 周  |  前置条件: 第一关通过
+```
+
+**通关目标**：
+- [ ] 用 Tailwind CSS / UnoCSS 重构第一关页面
+- [ ] 实现响应式设计（手机 / 平板 / 桌面三档适配）
+- [ ] 理解 CSS 变量并搭建一套主题系统（亮色 / 暗色）
+- [ ] 用 CSS Modules 或 Scoped Style 做组件样式隔离
+
+**推荐装备**：
+- [Tailwind CSS 官方文档](https://tailwindcss.com/docs) — 原子化 CSS 框架
+- [UnoCSS](https://unocss.dev/) — 即时按需的原子化引擎
+- [Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries) — 新一代响应式方案
 
 <details>
-<summary><b>🔵 第二阶段：CSS 进阶</b></summary>
+<summary>🎁 通关奖励</summary>
 
-- **Tailwind CSS / UnoCSS**：原子化 CSS 框架
-- **CSS Modules**：作用域样式隔离
-- **响应式设计**：媒体查询、容器查询
-- **CSS 变量与主题系统**
-
-**推荐资源**：
-- [Tailwind CSS 官方文档](https://tailwindcss.com/docs)
-- [CSS-Tricks](https://css-tricks.com/)
+> 🏅 **「样式大师」徽章** — 你已能用 CSS 驾驭任何布局
 </details>
+
+---
+
+### ⚔️ 第三关｜初入异世界 — JavaScript 核心
+
+```
+难度: ★★★☆☆  |  预计耗时: 3~4 周  |  前置条件: 第二关通过
+```
+
+**通关目标**：
+- [ ] 熟练使用 ES6+ 语法（解构、箭头函数、模板字符串、Promise）
+- [ ] 完成 DOM 操作：动态渲染列表、事件委托、表单验证
+- [ ] 用 Fetch API 调用一个公开 API 并渲染数据
+- [ ] 理解 async/await 并处理错误
+
+**推荐装备**：
+- [JavaScript.info](https://javascript.info/) — 现代 JS 教程
+- [ES6 入门教程 — 阮一峰](https://es6.ruanyifeng.com/) — 中文经典
+- [Can I Use](https://caniuse.com/) — 兼容性查询
 
 <details>
-<summary><b>🟠 第三阶段：Astro 框架</b></summary>
+<summary>🎁 通关奖励</summary>
 
-- **Islands Architecture**：按需水合，极致性能
-- **Content Collections**：类型安全的 Markdown/MDX
-- **文件路由与布局系统**
-- **SSG vs SSR**：静态生成与服务端渲染
-
-**推荐资源**：
-- [Astro 官方文档](https://docs.astro.build/zh-cn/)
-- [Astro 中文教程](https://docs.astro.build/zh-cn/getting-started/)
+> 🏅 **「脚本术士」徽章** — 你已能让网页活起来
 </details>
+
+---
+
+### ⚔️ 第四关｜锻造圣剑 — TypeScript
+
+```
+难度: ★★★☆☆  |  预计耗时: 2~3 周  |  前置条件: 第三关通过
+```
+
+**通关目标**：
+- [ ] 理解类型系统：基础类型、接口、泛型
+- [ ] 能为一个 JS 项目添加 TS 支持并逐步迁移
+- [ ] 使用类型守卫和条件类型处理复杂场景
+- [ ] 在 Astro 项目中正常编写 `.ts` 文件
+
+**推荐装备**：
+- [TypeScript 官方文档](https://www.typescriptlang.org/docs/) — 权威参考
+- [TypeScript Playground](https://www.typescriptlang.org/play) — 在线实验
+- [类型体操入门](https://github.com/type-challenges/type-challenges) — 进阶挑战
 
 <details>
-<summary><b>🟣 第四阶段：UI 框架集成</b></summary>
+<summary>🎁 通关奖励</summary>
 
-- 在 Astro 中使用 **React / Vue / Svelte / Solid** 作为交互岛屿
-- 组件通信与状态管理
-- 选择合适的框架场景
-
-**推荐资源**：
-- [React 官方文档](https://react.dev/)
-- [Vue.js 官方文档](https://cn.vuejs.org/)
-- [Svelte 教程](https://svelte.dev/tutorial)
+> 🏅 **「类型守护者」徽章** — 你已能用类型武装自己的代码
 </details>
+
+---
+
+### ⚔️ 第五关｜召唤坐骑 — 前端框架
+
+```
+难度: ★★★★☆  |  预计耗时: 4~6 周  |  前置条件: 第四关通过
+```
+
+**通关目标**：
+- [ ] 学习 React / Vue / Svelte 中任一框架的核心概念
+- [ ] 完成组件化开发：父子通信、状态管理、生命周期
+- [ ] 用框架做一个小型 SPA（待办列表 / 天气查询）
+- [ ] 了解 Astro Islands 架构，能在 Astro 中嵌入框架组件
+
+**推荐装备**：
+- [React 官方文档](https://react.dev/) — 2024 新版教程
+- [Vue.js 官方文档](https://cn.vuejs.org/) — 中文友好
+- [Svelte 教程](https://svelte.dev/tutorial) — 最轻量的选择
 
 <details>
-<summary><b>🔴 第五阶段：内容与数据</b></summary>
+<summary>🎁 通关奖励</summary>
 
-- **MDX**：在 Markdown 中使用 JSX 组件
-- **Astro Content Collections**：类型安全内容管理
-- **数据获取模式**：静态数据 + API 调用
-- **RSS 订阅**实现
-
-**推荐资源**：
-- [MDX 官方文档](https://mdxjs.com/)
-- [Astro Content Collections](https://docs.astro.build/guides/content-collections/)
+> 🏅 **「框架骑士」徽章** — 你已拥有自己的战斗伙伴
 </details>
+
+---
+
+### ⚔️ 第六关｜铸造神殿 — Astro 全栈
+
+```
+难度: ★★★★☆  |  预计耗时: 3~4 周  |  前置条件: 第五关通过
+```
+
+**通关目标**：
+- [ ] 用 Astro 从零搭建一个完整站点（≥5 个页面）
+- [ ] 掌握 Content Collections 实现类型安全的 Markdown 管理
+- [ ] 实现 SSG 静态生成 + 部署到 GitHub Pages
+- [ ] 添加搜索、暗色模式、RSS 等功能
+
+**推荐装备**：
+- [Astro 官方文档](https://docs.astro.build/zh-cn/) — 最权威教程
+- [Starlight](https://starlight.astro.build/) — 文档站主题
+- [Astro Templates](https://astro.build/themes/) — 模板灵感
 
 <details>
-<summary><b>🟡 第六阶段：部署与优化</b></summary>
+<summary>🎁 通关奖励</summary>
 
-- **GitHub Pages / Vercel / Netlify / Cloudflare Pages**
-- **Lighthouse 审计**与性能优化
-- **SEO**：Meta 标签、Open Graph、Sitemap
-- **View Transitions API**：页面切换动画
-
-**推荐资源**：
-- [Web.dev 性能指南](https://web.dev/performance)
-- [PageSpeed Insights](https://pagespeed.web.dev/)
+> 🏅 **「神殿建筑师」徽章** — 你已能独立建造完整的网站殿堂
+>
+> 💡 **恭喜！你已通关本项目所用的全部技术栈！** 以下关卡为进阶挑战。
 </details>
+
+---
+
+### ⚔️ 第七关｜飞升之路 — 部署与性能
+
+```
+难度: ★★★★★  |  预计耗时: 2~3 周  |  前置条件: 第六关通过
+```
+
+**通关目标**：
+- [ ] 用 Lighthouse 跑分 ≥ 90（性能 / SEO / 可访问性）
+- [ ] 配置 GitHub Actions CI/CD 自动部署流水线
+- [ ] 实现 SEO 优化：Meta 标签、Open Graph、Sitemap、结构化数据
+- [ ] 用 View Transitions API 添加页面切换动画
+
+**推荐装备**：
+- [Web.dev 性能指南](https://web.dev/performance) — Google 官方
+- [PageSpeed Insights](https://pagespeed.web.dev/) — 在线跑分
+- [Astro SSG Guide](https://docs.astro.build/guides/static-assets/) — 静态资源优化
 
 <details>
-<summary><b>⚪ 第七阶段：进阶方向</b></summary>
+<summary>🎁 通关奖励</summary>
 
-- **Starlight 文档站**（本项目所用）
-- **Astro Middleware**：请求拦截与处理
-- **PWA**：渐进式 Web 应用
-- **i18n 国际化**：多语言支持
-- **数据库集成**：Supabase / Turso
-
-**推荐资源**：
-- [Starlight 官方文档](https://starlight.astro.build/zh-cn/)
-- [Astro GitHub](https://github.com/withastro/astro)
+> 🏅 **「飞升者」徽章** — 你的作品已达到生产级标准
 </details>
+
+---
+
+### ⚔️ 第八关｜最终试炼 — 全能战士
+
+```
+难度: ★★★★★  |  预计耗时: 持续进化  |  前置条件: 第七关通过
+```
+
+**通关目标**：
+- [ ] 实现 PWA 离线支持（Service Worker + Manifest）
+- [ ] 接入 i18n 国际化，支持中英双语
+- [ ] 集成数据库（Supabase / Turso）实现真实后端功能
+- [ ] 用 Astro Middleware 实现服务端逻辑
+- [ ] 构建一个完整的 SaaS / 开源项目并发布
+
+**推荐装备**：
+- [PWA 文档](https://web.dev/articles/what-are-pwas) — 渐进式 Web 应用
+- [Supabase](https://supabase.com/) — 开源 Firebase 替代
+- [Astro Middleware](https://docs.astro.build/guides/middleware/) — 请求拦截
+
+<details>
+<summary>🎁 通关奖励</summary>
+
+> 🏅🏆 **「全能战士」终极徽章** — 你已掌握从前端到部署的全部技能！
+>
+> **你就是 Full-Stack Developer！**
+</details>
+
+---
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║  🏆 全部通关后解锁成就：                                      ║
+║                                                              ║
+║  🥉 初出茅庐 — 通关第 1~2 关                                  ║
+║  🥈 独当一面 — 通关第 3~5 关                                  ║
+║  🥇 独步天下 — 通关第 6~7 关                                  ║
+║  👑 全能战士 — 通关全部 8 关                                   ║
+╚══════════════════════════════════════════════════════════════╝
+```
 
 ---
 
