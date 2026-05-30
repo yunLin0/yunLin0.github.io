@@ -1,0 +1,43 @@
+---
+title: yunLin0 — Developer & Creator
+description: 热爱技术与创造的开发者个人主页
+template: splash
+hero:
+  tagline: Welcome to my space 👋
+  title: "Hi, I'm yunLin0"
+  actions:
+    - text: 查看项目
+      link: /projects
+      icon: right-arrow
+      variant: primary
+    - text: 关于我
+      link: /about
+      icon: external
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<div class="status-badge">
+  <span class="status-dot"></span>
+  Open to collaboration
+</div>
+
+一名热爱技术与创造的开发者。用代码构建有意义的产品，在不断探索中成长，在每次提交中进步。
+
+## 快速导航
+
+<CardGrid>
+  <Card title="👤 关于我" icon="pencil">
+    了解我的背景、理念和联系方式。[了解更多 →](/about)
+  </Card>
+  <Card title="⚡ 技能" icon="seti:json">
+    前端、后端、工具链——我的技术栈一览。[查看技能 →](/skills)
+  </Card>
+  <Card title="📦 项目" icon="seti:html">
+    我参与和主导的项目作品。[浏览项目 →](/projects)
+  </Card>
+  <Card title="📅 经历" icon="seti:clock">
+    学习与成长的时间线。[查看经历 →](/experience)
+  </Card>
+</CardGrid>
