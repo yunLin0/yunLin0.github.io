@@ -11,16 +11,25 @@ yunLin0.github.io/
 ├── .github/workflows/
 │   └── deploy.yml          ← GitHub Actions 自动部署配置
 ├── public/
-│   └── favicon.svg          ← 网站图标
+│   ├── favicon.svg          ← 网站图标
+│   ├── rss.xml              ← RSS 订阅源（手动更新）
+│   └── js/
+│       ├── guestbook.js     ← 留言板脚本
+│       └── github-repos.js  ← GitHub 项目卡片脚本
 ├── src/
 │   ├── content/
 │   │   └── docs/            ← 📝 所有页面内容（Markdown 文件）
 │   │       ├── index.mdx    ← 首页
 │   │       ├── about.mdx    ← 关于我
 │   │       ├── skills.mdx   ← 技能
-│   │       ├── projects.mdx ← 项目
+│   │       ├── projects.mdx ← 项目（含 GitHub 自动拉取）
 │   │       ├── experience.mdx← 经历
-│   │       └── contact.mdx  ← 联系
+│   │       ├── contact.mdx  ← 联系
+│   │       ├── guestbook.mdx← 留言板
+│   │       └── blog/
+│   │           ├── index.mdx        ← 博客列表页
+│   │           ├── hello-world.mdx  ← 示例文章
+│   │           └── astro-guide.mdx  ← 示例文章
 │   ├── content.config.ts    ← 内容配置（一般不用改）
 │   └── styles/
 │       └── custom.css       ← 🎨 自定义样式（改颜色、布局在这里）
@@ -31,7 +40,24 @@ yunLin0.github.io/
 
 ---
 
-## 🔧 日常维护：修改内容
+## ✨ 已有功能一览
+
+| 功能 | 说明 | 配置位置 |
+|------|------|----------|
+| 🌙 暗色模式 | 右上角切换，自动跟随系统 | 自带，CSS 在 `custom.css` |
+| 🔍 全文搜索 | ⌘K 快捷键，搜索所有页面内容 | 自带（Pagefind） |
+| 📝 博客系统 | 写 Markdown 文章，自动归档 | `src/content/docs/blog/` |
+| 📦 GitHub 项目卡片 | 自动拉取你的 GitHub 公开仓库 | `projects.mdx` + `public/js/github-repos.js` |
+| 💬 留言板 | 跳转 GitHub Discussions 留言 | `guestbook.mdx` + `public/js/guestbook.js` |
+| 📡 RSS 订阅 | 读者可订阅你的博客更新 | `public/rss.xml` |
+| 📊 访客统计 | Umami 隐私友好统计 | `astro.config.mjs` 中的 `head` |
+| 📖 阅读进度条 | 页面顶部显示阅读进度 | `astro.config.mjs` 中的 `head` |
+| 🗺️ Sitemap | 自动生成，利于搜索引擎收录 | 自带 |
+| 📱 响应式布局 | 手机、平板、电脑自适应 | 自带 |
+
+---
+
+## 🔧 日常维护
 
 ### 你 90% 的操作只需要编辑 `src/content/docs/` 下的 `.mdx` 文件
 
@@ -54,8 +80,6 @@ yunLin0.github.io/
 打开 `src/content/docs/projects.mdx`，照着已有格式复制粘贴：
 
 ```markdown
-## 新项目名称
-
 <div class="project-card">
   <div class="card-header">
     <span class="card-title">项目名称</span>
@@ -70,6 +94,8 @@ yunLin0.github.io/
   </div>
 </div>
 ```
+
+> **注意**：页面底部的"GitHub 开源项目"区域会自动拉取你的 GitHub 仓库，不需要手动维护。
 
 ### 3. 修改技能标签
 
@@ -105,28 +131,121 @@ yunLin0.github.io/
 
 ---
 
-## 🚀 发布修改
+## 📝 写博客文章
 
-每次修改后，需要提交到 GitHub，网站会自动更新：
+### 第一步：创建文件
 
-```bash
-# 1. 进入项目目录
-cd yunLin0.github.io
+在 `src/content/docs/blog/` 下新建 `.mdx` 文件，例如 `my-post.mdx`：
 
-# 2. 查看你改了哪些文件
-git status
+```markdown
+---
+title: 文章标题
+description: 文章简介（会显示在列表页）
+date: 2026-05-30
+tags: [标签1, 标签2]
+---
 
-# 3. 添加所有修改
-git add -A
+## 正文标题
 
-# 4. 提交（引号里写你改了什么）
-git commit -m "更新项目描述"
+正文内容，支持所有 Markdown 语法：
 
-# 5. 推送到 GitHub
-git push
+- 列表
+- **加粗**
+- `代码`
+- [链接](https://example.com)
+
+代码块：
+
+```python
+print("Hello World!")
 ```
 
-推送后等 1~2 分钟，GitHub Actions 会自动构建并部署，刷新网站即可看到更新。
+:::tip[提示框]
+这是一个提示框，支持 tip、note、caution、danger 等类型。
+:::
+```
+
+### 第二步：添加到博客列表
+
+打开 `src/content/docs/blog/index.mdx`，在 `<div class="blog-list">` 中添加：
+
+```html
+<div class="blog-post-item">
+  <a href="/blog/my-post">
+    <div class="blog-post-title">文章标题</div>
+  </a>
+  <div class="blog-post-meta">
+    <span>📅 2026-05-30</span>
+    <span>⏱️ 5 分钟</span>
+  </div>
+  <div class="blog-post-desc">
+    文章简介，一两句话概括。
+  </div>
+  <div class="blog-post-tags">
+    <span class="blog-tag">标签1</span>
+    <span class="blog-tag">标签2</span>
+  </div>
+</div>
+```
+
+### 第三步：更新 RSS
+
+编辑 `public/rss.xml`，在 `<channel>` 中添加：
+
+```xml
+<item>
+  <title>文章标题</title>
+  <link>https://yunlin0.github.io/blog/my-post/</link>
+  <description>文章简介</description>
+  <pubDate>Sat, 30 May 2026 00:00:00 +0800</pubDate>
+  <guid>https://yunlin0.github.io/blog/my-post/</guid>
+</item>
+```
+
+> **日期格式**：`Sun, Mon, Tue, Wed, Thu, Fri, Sat` + 日 月 年 时间 +0800
+
+### 第四步：推送
+
+```bash
+git add -A && git commit -m "发布博客：文章标题" && git push
+```
+
+---
+
+## 💬 管理留言板
+
+留言板通过 GitHub Discussions 实现：
+
+1. 访问 https://github.com/yunLin0/yunLin0.github.io/discussions
+2. 查看访客留言
+3. 可以回复、标记为已解答
+
+> **首次使用**：需要在 GitHub 仓库设置中开启 Discussions 功能。
+> 仓库 → Settings → General → Features → 勾选 Discussions
+
+---
+
+## 📊 查看访客统计
+
+网站集成了 [Umami](https://umami.is) 访客统计：
+
+1. 访问 https://cloud.umami.is
+2. 注册账号并添加网站 `https://yunlin0.github.io`
+3. 获取 Website ID
+4. 编辑 `astro.config.mjs`，把 `YOUR_WEBSITE_ID` 替换为真实 ID：
+
+```javascript
+head: [
+  {
+    tag: 'script',
+    attrs: {
+      defer: true,
+      'data-website-id': '你的真实ID',  // ← 替换这里
+      src: 'https://cloud.umami.is/script.js',
+    },
+  },
+],
+```
 
 ---
 
@@ -143,6 +262,8 @@ git push
   --sl-color-accent-low: #e0f2fe;    /* 浅蓝背景 */
 }
 ```
+
+暗色模式颜色在 `[data-theme="dark"]` 部分，一起改。
 
 常用颜色：
 - 天蓝：`#0ea5e9`
@@ -182,15 +303,15 @@ export default defineConfig({
 
 ### 第一步：创建文件
 
-在 `src/content/docs/` 下新建一个 `.mdx` 文件，例如 `blog.mdx`：
+在 `src/content/docs/` 下新建 `.mdx` 文件，例如 `links.mdx`：
 
 ```markdown
 ---
-title: 博客
-description: 我的博客文章
+title: 友情链接
+description: 我的朋友们
 ---
 
-这里写你的内容...
+这里写内容...
 ```
 
 ### 第二步：添加到导航
@@ -203,8 +324,10 @@ sidebar: [
   { label: '关于我', link: '/about' },
   { label: '技能', link: '/skills' },
   { label: '项目', link: '/projects' },
+  { label: '博客', link: '/blog' },
   { label: '经历', link: '/experience' },
-  { label: '博客', link: '/blog' },      // ← 新增
+  { label: '留言板', link: '/guestbook' },
+  { label: '友情链接', link: '/links' },    // ← 新增
   { label: '联系', link: '/contact' },
 ],
 ```
@@ -212,8 +335,33 @@ sidebar: [
 ### 第三步：推送
 
 ```bash
-git add -A && git commit -m "添加博客页面" && git push
+git add -A && git commit -m "添加友情链接页面" && git push
 ```
+
+---
+
+## 🚀 发布修改
+
+每次修改后，需要提交到 GitHub，网站会自动更新：
+
+```bash
+# 1. 进入项目目录
+cd yunLin0.github.io
+
+# 2. 查看你改了哪些文件
+git status
+
+# 3. 添加所有修改
+git add -A
+
+# 4. 提交（引号里写你改了什么）
+git commit -m "更新项目描述"
+
+# 5. 推送到 GitHub
+git push
+```
+
+推送后等 1~2 分钟，GitHub Actions 会自动构建并部署，刷新网站即可看到更新。
 
 ---
 
@@ -274,9 +422,9 @@ npm run dev
 2. 最常见的原因是 Markdown 语法写错了（比如 `<div>` 没有闭合）
 3. 检查你最近改的文件，对照已有格式排查
 
-### Q: 我想换主题色怎么办？
+### Q: 暗色模式颜色不好看怎么改？
 
-编辑 `src/styles/custom.css`，修改 `:root` 中的颜色变量，然后推送。
+编辑 `src/styles/custom.css`，找到 `[data-theme="dark"]` 部分，修改颜色变量。
 
 ### Q: 怎么添加图片？
 
@@ -289,6 +437,18 @@ npm run dev
 1. 访问 https://search.google.com/search-console
 2. 添加你的网站 `https://yunlin0.github.io`
 3. 提交 sitemap：`https://yunlin0.github.io/sitemap-index.xml`
+
+### Q: GitHub 项目卡片没显示？
+
+1. 确认你的 GitHub 仓库是 **公开** 的
+2. 检查浏览器控制台是否有 API 请求错误
+3. GitHub API 有速率限制，频繁访问可能被暂时屏蔽
+
+### Q: 留言板不能用？
+
+1. 需要先在 GitHub 仓库中开启 Discussions：
+   - 仓库 → Settings → General → Features → 勾选 Discussions
+2. 开启后，访客点击"提交留言"会跳转到 GitHub 进行留言
 
 ---
 
@@ -312,13 +472,38 @@ npm run dev
 ├─────────────────────────────────────────────────┤
 │  文件速查                                         │
 │                                                   │
-│  改内容  → src/content/docs/*.mdx                 │
-│  改样式  → src/styles/custom.css                  │
-│  改配置  → astro.config.mjs                       │
-│  改图标  → public/favicon.svg                     │
+│  改内容    → src/content/docs/*.mdx               │
+│  写博客    → src/content/docs/blog/*.mdx          │
+│  改样式    → src/styles/custom.css                │
+│  改配置    → astro.config.mjs                     │
+│  改图标    → public/favicon.svg                   │
+│  更新 RSS  → public/rss.xml                       │
+│  改脚本    → public/js/*.js                       │
+│                                                   │
+├─────────────────────────────────────────────────┤
+│  功能速查                                         │
+│                                                   │
+│  暗色模式  → 自带，改色在 custom.css               │
+│  搜索      → 自带（⌘K）                           │
+│  博客      → blog/ 目录 + blog/index.mdx          │
+│  留言板    → guestbook.mdx + GitHub Discussions    │
+│  项目卡片  → 自动拉取 GitHub 仓库                  │
+│  RSS       → public/rss.xml 手动更新               │
+│  统计      → astro.config.mjs 中的 Umami ID       │
+│  进度条    → 自带                                  │
 │                                                   │
 └─────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🔗 相关链接
+
+- [Astro 文档](https://docs.astro.build/zh-cn/)
+- [Starlight 文档](https://starlight.astro.build/zh-cn/)
+- [Markdown 教程](https://markdown.com.cn)
+- [Umami 统计](https://umami.is)
+- [GitHub Discussions](https://docs.github.com/zh/discussions)
 
 ---
 
