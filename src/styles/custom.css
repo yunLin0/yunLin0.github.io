@@ -52,6 +52,15 @@ html {
 }
 
 /* Full page background */
+html {
+  background: transparent !important;
+}
+
+body {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
 body::before {
   content: '';
   position: fixed;
@@ -61,6 +70,14 @@ body::before {
   z-index: -1;
   transition: opacity 0.3s ease;
   pointer-events: none;
+}
+
+/* 清除所有容器的背景色 */
+.page,
+.main-frame,
+main,
+.lg\:sl-flex {
+  background: transparent !important;
 }
 
 /* ===== Reading Progress Bar ===== */
@@ -76,7 +93,31 @@ body::before {
   border-radius: 0 2px 2px 0;
 }
 
-/* Sidebar */
+/* ===== 全部容器透明化 ===== */
+.page,
+.main-frame,
+.main-pane,
+.sidebar-pane,
+.content-panel,
+.right-sidebar,
+.header {
+  background: transparent !important;
+}
+
+/* 毛玻璃效果 — 内容面板 */
+.content-panel {
+  padding-top: 2rem !important;
+  background: rgba(255,255,255,0.7) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 8px;
+}
+
+[data-theme="dark"] .content-panel {
+  background: rgba(15,23,42,0.7) !important;
+}
+
+/* 毛玻璃效果 — 侧边栏 */
 .sidebar-pane {
   border-right: 1px solid var(--sl-color-gray-6) !important;
   background: rgba(255,255,255,0.75) !important;
@@ -88,30 +129,7 @@ body::before {
   background: rgba(15,23,42,0.75) !important;
 }
 
-/* Content area */
-.content-panel {
-  padding-top: 2rem !important;
-  background: rgba(255,255,255,0.7) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-[data-theme="dark"] .content-panel {
-  background: rgba(15,23,42,0.7) !important;
-}
-
-/* Header */
-.header {
-  background: rgba(255,255,255,0.7) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-[data-theme="dark"] .header {
-  background: rgba(15,23,42,0.7) !important;
-}
-
-/* Right sidebar */
+/* 毛玻璃效果 — 右侧目录 */
 .right-sidebar {
   border-left: 1px solid var(--sl-color-gray-6) !important;
   background: rgba(255,255,255,0.75) !important;
@@ -121,6 +139,17 @@ body::before {
 
 [data-theme="dark"] .right-sidebar {
   background: rgba(15,23,42,0.75) !important;
+}
+
+/* 毛玻璃效果 — 顶部导航 */
+.header {
+  background: rgba(255,255,255,0.7) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+[data-theme="dark"] .header {
+  background: rgba(15,23,42,0.7) !important;
 }
 
 /* Hero section */
