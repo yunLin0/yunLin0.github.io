@@ -33,6 +33,15 @@ export default defineConfig({
         { label: '联系', link: '/contact' },
       ],
       head: [
+        // 防止缓存旧版本
+        {
+          tag: 'meta',
+          attrs: { 'http-equiv': 'Cache-Control', content: 'no-cache, no-store, must-revalidate' },
+        },
+        {
+          tag: 'meta',
+          attrs: { 'http-equiv': 'Pragma', content: 'no-cache' },
+        },
         // Umami 访客统计
         {
           tag: 'script',
