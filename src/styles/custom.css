@@ -26,7 +26,7 @@
   --sl-header-height: 3.5rem;
 
   /* Background image opacity */
-  --bg-opacity: 0.15;
+  --bg-opacity: 0.35;
 }
 
 /* ===== Dark Mode ===== */
@@ -51,6 +51,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Full page background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('/images/bg.jpg') center/cover no-repeat;
+  opacity: var(--bg-opacity);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
 /* ===== Reading Progress Bar ===== */
 .reading-progress {
   position: fixed;
@@ -67,11 +79,24 @@ html {
 /* Sidebar */
 .sidebar-pane {
   border-right: 1px solid var(--sl-color-gray-6) !important;
+  background: var(--sl-color-bg) !important;
 }
 
 /* Content area */
 .content-panel {
   padding-top: 2rem !important;
+  background: var(--sl-color-bg) !important;
+}
+
+/* Header */
+.header {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme="dark"] .header {
+  background: rgba(15,23,42,0.85) !important;
 }
 
 /* Hero section */
@@ -81,28 +106,6 @@ html {
   padding: 3rem 2.5rem !important;
   margin-bottom: 2rem;
   overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/images/bg.jpg') center/cover no-repeat;
-  opacity: var(--bg-opacity);
-  z-index: 0;
-  transition: opacity 0.3s ease;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.85) 50%, rgba(240,253,244,0.9) 100%);
-  z-index: 0;
-}
-
-[data-theme="dark"] .hero::after {
-  background: linear-gradient(135deg, rgba(12,74,110,0.9) 0%, rgba(15,23,42,0.85) 50%, rgba(6,78,59,0.9) 100%);
 }
 
 .hero > * {
@@ -491,6 +494,7 @@ a[aria-current="page"] {
 /* Table of contents */
 .right-sidebar {
   border-left: 1px solid var(--sl-color-gray-6) !important;
+  background: var(--sl-color-bg) !important;
 }
 
 /* Smooth page transitions */

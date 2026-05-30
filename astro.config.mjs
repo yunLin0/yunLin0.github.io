@@ -70,7 +70,7 @@ export default defineConfig({
               }
               var ctrl = document.createElement('div');
               ctrl.className = 'bg-control';
-              ctrl.innerHTML = '<label>背景</label><input type="range" min="0" max="100" value="' + Math.round((saved || 0.15) * 100) + '"><span class="opacity-value">' + Math.round((saved || 0.15) * 100) + '%</span>';
+              ctrl.innerHTML = '<label>背景</label><input type="range" min="0" max="100" value="' + Math.round((saved || 0.35) * 100) + '"><span class="opacity-value">' + Math.round((saved || 0.35) * 100) + '%</span>';
               document.body.appendChild(ctrl);
               var slider = ctrl.querySelector('input');
               var val = ctrl.querySelector('.opacity-value');
