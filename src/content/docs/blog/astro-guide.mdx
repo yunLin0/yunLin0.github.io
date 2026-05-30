@@ -1,0 +1,80 @@
+---
+title: Astro + Starlight 快速上手指南
+description: 从零开始搭建文档风格的个人网站
+date: 2026-05-29
+tags: [Astro, Starlight, 教程]
+---
+
+## 前置条件
+
+- 安装了 Node.js（v18+）
+- 有 GitHub 账号
+- 会基本的命令行操作
+
+## 第一步：创建项目
+
+```bash
+npm create astro@latest my-site
+cd my-site
+```
+
+## 第二步：添加 Starlight
+
+```bash
+npx astro add starlight --yes
+```
+
+## 第三步：写内容
+
+在 `src/content/docs/` 下创建 `.mdx` 文件：
+
+```markdown
+---
+title: 我的页面
+description: 页面描述
+---
+
+这里写你的内容...
+```
+
+## 第四步：本地预览
+
+```bash
+npm run dev
+```
+
+打开 http://localhost:4321 查看效果。
+
+## 第五步：部署
+
+推送到 GitHub，配置 GitHub Actions 自动部署。
+
+```bash
+git add -A
+git commit -m "Initial commit"
+git push
+```
+
+## 常用功能
+
+### 添加暗色模式
+
+Starlight 自带暗色模式切换，无需额外配置。
+
+### 添加搜索
+
+Starlight 内置 Pagefind 搜索，构建时自动生成。
+
+### 自定义样式
+
+创建 `src/styles/custom.css`，在 `astro.config.mjs` 中引用：
+
+```javascript
+starlight({
+  customCss: ['./src/styles/custom.css'],
+})
+```
+
+---
+
+*更多内容请参考 [Astro 官方文档](https://docs.astro.build) 和 [Starlight 文档](https://starlight.astro.build)。*

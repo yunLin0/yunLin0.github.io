@@ -1,0 +1,29 @@
+---
+title: 留言板
+description: 欢迎在这里留下你的足迹
+---
+
+## 👋 欢迎来到留言板
+
+这里是访客留言的地方。你可以：
+
+- 💬 打个招呼
+- 💡 提个建议
+- 🤝 表达合作意向
+- 🐛 反馈网站问题
+
+<div class="guestbook-form">
+  <label for="gb-name">你的名字</label>
+  <input type="text" id="gb-name" placeholder="匿名访客" />
+
+  <label for="gb-message">留言内容</label>
+  <textarea id="gb-message" placeholder="写点什么吧..."></textarea>
+
+  <button onclick="submitGuestbook()">提交留言</button>
+</div>
+
+:::note[关于留言]
+目前留言板通过 GitHub Discussions 实现。点击提交后会跳转到 GitHub 进行留言。
+:::
+
+<script is:inline src="/js/guestbook.js"></script>
