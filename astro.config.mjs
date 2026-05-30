@@ -70,7 +70,7 @@ export default defineConfig({
             .sidebar-pane { background: rgba(255,255,255,0.75) !important; background-color: rgba(255,255,255,0.75) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
             .content-panel { background: rgba(255,255,255,0.7) !important; background-color: rgba(255,255,255,0.7) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-top: 2rem !important; }
             .right-sidebar { background: rgba(255,255,255,0.75) !important; background-color: rgba(255,255,255,0.75) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-left: 1px solid var(--sl-color-gray-6) !important; }
-            .header { background: rgba(255,255,255,0.7) !important; background-color: rgba(255,255,255,0.7) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.06) !important; }
+            .header { background: rgba(255,255,255,0.7) !important; background-color: rgba(255,255,255,0.7) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: none !important; border-bottom: 1px solid rgba(0,0,0,0.06) !important; box-shadow: none !important; outline: none !important; }
             [data-theme="dark"] .sidebar-pane, [data-theme="dark"] .right-sidebar { background: rgba(15,23,42,0.75) !important; background-color: rgba(15,23,42,0.75) !important; }
             [data-theme="dark"] .content-panel, [data-theme="dark"] .header { background: rgba(15,23,42,0.7) !important; background-color: rgba(15,23,42,0.7) !important; }
           `,

@@ -1,399 +1,389 @@
-# 🌟 yunLin0 个人主页 — 维护指南
+<div align="center">
 
-> 基于 [Astro](https://astro.build) + [Starlight](https://starlight.astro.build) 构建的文档风格个人主页
+# 🌐 yunLin0.github.io
+
+**yunLin 的个人主页 —— 用 Astro + Starlight 打造的现代化个人文档站**
+
+[![Astro](https://img.shields.io/badge/Astro-v6.4-FF5D01?logo=astro&logoColor=white)](https://astro.build)
+[![Starlight](https://img.shields.io/badge/Starlight-v0.39-5800FF?logo=starlight&logoColor=white)](https://starlight.astro.build)
+[![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-222)](https://pages.github.com)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+**[🚀 在线访问](https://yunlin0.github.io) · [📝 博客](https://yunlin0.github.io/blog) · [💬 留言板](https://yunlin0.github.io/guestbook)**
+
+</div>
 
 ---
+
+## 📖 项目简介
+
+这是一个基于 **Astro 6 + Starlight** 构建的个人介绍文档站，集成了博客、留言板、全文搜索、访客统计等功能。采用 **Islands Architecture（岛屿架构）**，按需加载交互组件，确保极致性能。
+
+## ✨ 功能特性
+
+| 功能 | 说明 |
+|------|------|
+| 🏠 个人主页 | Hero 欢迎区 + 信息卡片网格 |
+| 👤 关于我 | 个人简介、兴趣爱好 |
+| 🛠️ 技能树 | 分组彩色标签展示 |
+| 📂 项目集 | 手动卡片 + GitHub 仓库自动获取 |
+| 📅 时间线 | 学习/工作经历 |
+| 📝 博客 | MDX 文章 + 标签分类 + 阅读进度条 |
+| 💬 留言板 | 基于 GitHub Discussions |
+| 🔍 全文搜索 | Pagefind 实现（Starlight 内置） |
+| 📊 访客统计 | Umami 隐私友好分析 |
+| 🌗 深色模式 | 一键切换 + 自动记忆偏好 |
+| 🎨 背景图 | 动漫背景 + 毛玻璃效果 + 透明度可调 |
+| 📡 RSS | 订阅博客更新 |
+
+## 🛠️ 技术栈
+
+| 层级 | 技术 | 用途 |
+|------|------|------|
+| 框架 | [Astro](https://astro.build) v6.4 | 静态站点生成，Islands 架构 |
+| 主题 | [Starlight](https://starlight.astro.build) v0.39 | 文档风格 UI，内置搜索/暗色模式 |
+| 语言 | TypeScript + MDX | 类型安全 + 丰富内容 |
+| 部署 | [GitHub Pages](https://pages.github.com) | 免费托管 + 自动部署 |
+| CI/CD | [GitHub Actions](https://github.com/features/actions) | push 自动构建发布 |
+| 统计 | [Umami](https://umami.is) | 隐私友好访客分析 |
+| 搜索 | [Pagefind](https://pagefind.app) | 静态全文搜索引擎 |
 
 ## 📁 项目结构
 
 ```
 yunLin0.github.io/
-├── .github/workflows/
-│   └── deploy.yml              ← GitHub Actions 自动部署配置
-├── public/
-│   ├── favicon.svg              ← 网站图标
-│   ├── rss.xml                  ← RSS 订阅源（手动更新）
-│   ├── images/
-│   │   └── bg.jpg               ← 🖼️ 全页面背景图
-│   └── js/
-│       ├── guestbook.js         ← 留言板脚本
-│       └── github-repos.js      ← GitHub 项目卡片脚本
+├── .github/workflows/      # GitHub Actions 自动部署
+│   └── deploy.yml
+├── public/                  # 静态资源（不经过构建处理）
+│   ├── images/              # 图片资源
+│   │   └── bg.jpg           # 背景图
+│   ├── js/                  # 外部 JS 脚本
+│   │   ├── github-repos.js  # GitHub 仓库自动获取
+│   │   └── guestbook.js     # 留言板跳转脚本
+│   └── rss.xml              # RSS 订阅源
 ├── src/
-│   ├── content/
-│   │   └── docs/                ← 📝 所有页面内容（Markdown 文件）
-│   │       ├── index.mdx        ← 首页
-│   │       ├── about.mdx        ← 关于我
-│   │       ├── skills.mdx       ← 技能
-│   │       ├── projects.mdx     ← 项目（含 GitHub 自动拉取）
-│   │       ├── experience.mdx   ← 经历
-│   │       ├── contact.mdx      ← 联系
-│   │       ├── guestbook.mdx    ← 留言板
-│   │       └── blog/
-│   │           ├── index.mdx        ← 博客列表页
-│   │           ├── hello-world.mdx  ← 示例文章
-│   │           └── astro-guide.mdx  ← 示例文章
-│   ├── content.config.ts        ← 内容配置（一般不用改）
-│   └── styles/
-│       └── custom.css           ← 🎨 自定义样式
-├── astro.config.mjs             ← ⚙️ 网站配置（标题、导航、背景、统计等）
-├── package.json                 ← 依赖管理
-└── tsconfig.json                ← TypeScript 配置（不用改）
+│   ├── content/docs/        # ⭐ 所有页面内容（MDX 文件）
+│   │   ├── index.mdx        # 首页
+│   │   ├── about.mdx        # 关于我
+│   │   ├── skills.mdx       # 技能树
+│   │   ├── projects.mdx     # 项目集
+│   │   ├── experience.mdx   # 时间线
+│   │   ├── contact.mdx      # 联系方式
+│   │   ├── guestbook.mdx    # 留言板
+│   │   └── blog/            # 博客文章
+│   │       ├── index.mdx    # 博客列表
+│   │       ├── hello-world.mdx
+│   │       └── astro-guide.mdx
+│   ├── styles/
+│   │   └── custom.css       # 自定义样式
+│   └── content.config.ts    # 内容集合配置
+├── astro.config.mjs         # ⭐ 核心配置文件
+├── package.json
+└── tsconfig.json
 ```
 
----
+## 🚀 快速开始
 
-## ✨ 功能一览
+### 环境要求
 
-| 功能 | 说明 | 配置位置 |
-|------|------|----------|
-| 🖼️ 全页面背景图 | 固定背景 + 毛玻璃效果，透明度可调 | `public/images/bg.jpg` + `astro.config.mjs` |
-| 🔍 透明度滑块 | 右下角滑块调节背景透明度（0%~100%） | 自动保存到 localStorage |
-| 🌙 暗色模式 | 右上角切换，自动跟随系统 | 自带 |
-| 🔍 全文搜索 | ⌘K 快捷键，搜索所有页面 | 自带（Pagefind） |
-| 📖 阅读进度条 | 页面顶部渐变进度条 | `astro.config.mjs` |
-| 📝 博客系统 | 写 Markdown 文章，带标签 | `src/content/docs/blog/` |
-| 📦 GitHub 项目卡片 | 自动拉取公开仓库 | `projects.mdx` |
-| 💬 留言板 | 跳转 GitHub Discussions 留言 | `guestbook.mdx` |
-| 📡 RSS 订阅 | 读者可订阅博客更新 | `public/rss.xml` |
-| 📊 访客统计 | Umami 隐私友好统计 | `astro.config.mjs` 中 Website ID |
-| 🗺️ Sitemap | 自动生成，利于 SEO | 自带 |
-| 📱 响应式布局 | 手机、平板、电脑自适应 | 自带 |
+- **Node.js** >= 18（推荐 20+）
+- **包管理器**：npm / pnpm / yarn
 
----
+### 安装与运行
 
-## 🔧 日常维护
+```bash
+# 1. 克隆仓库
+git clone https://github.com/yunLin0/yunLin0.github.io.git
+cd yunLin0.github.io
 
-### 你 90% 的操作只需要编辑 `src/content/docs/` 下的 `.mdx` 文件
+# 2. 安装依赖
+npm install
 
-### 1. 修改个人信息
+# 3. 启动开发服务器
+npm run dev
+# 浏览器打开 http://localhost:4321
 
-打开 `src/content/docs/about.mdx`，直接编辑文字即可。
+# 4. 构建生产版本
+npm run build
 
-### 2. 添加/修改项目
-
-打开 `src/content/docs/projects.mdx`，照着已有格式复制粘贴：
-
-```html
-<div class="project-card">
-  <div class="card-header">
-    <span class="card-title">项目名称</span>
-    <span class="card-status">Active</span>
-  </div>
-  <p class="card-desc">项目描述</p>
-  <div class="card-tags">
-    <span class="card-tag">Python</span>
-  </div>
-</div>
+# 5. 预览构建结果
+npm run preview
 ```
 
-> 页面底部的 GitHub 项目卡片会自动拉取你的公开仓库，不需要手动维护。
+> [!TIP]
+> 开发模式支持热更新，修改文件后浏览器自动刷新。
 
-### 3. 修改技能标签
+## 📝 维护指南
 
-打开 `src/content/docs/skills.mdx`：
+### 一、日常内容更新
 
-```html
-<span class="skill-tag"><span class="tag-dot" style="background:#10b981"></span> 新技能名</span>
+#### 编辑已有页面
+
+所有页面内容在 `src/content/docs/` 目录下，直接编辑对应的 `.mdx` 文件即可：
+
+```
+src/content/docs/
+├── index.mdx         → 首页 Hero + 卡片
+├── about.mdx         → 关于我
+├── skills.mdx        → 技能标签
+├── projects.mdx      → 项目卡片
+├── experience.mdx    → 时间线
+├── contact.mdx       → 联系方式
+└── guestbook.mdx     → 留言板
 ```
 
-颜色：蓝 `#3b82f6` / 绿 `#10b981` / 黄 `#f59e0b` / 紫 `#8b5cf6` / 粉 `#ec4899` / 青 `#14b8a6`
-
-### 4. 修改经历时间线
-
-打开 `src/content/docs/experience.mdx`：
-
-```html
-<div class="timeline-item">
-  <div class="tl-date">2025</div>
-  <div class="tl-title">新的里程碑</div>
-  <div class="tl-desc">描述</div>
-</div>
-```
-
-### 5. 修改联系信息
-
-打开 `src/content/docs/contact.mdx`，修改链接和文字。
-
-### 6. 更换背景图
-
-把新图片保存为 `public/images/bg.jpg`（或 `.png`），然后修改 `astro.config.mjs` 中的路径：
-
-```javascript
-s.textContent = '...background:url(/images/新文件名.jpg)...'
-```
-
-### 7. 调整背景默认透明度
-
-编辑 `astro.config.mjs`，搜索 `0.35`（默认 35%），改成你想要的值（0~1）。
-
----
-
-## 📝 写博客文章
-
-### 第一步：创建文件
+#### 添加新博客文章
 
 在 `src/content/docs/blog/` 下新建 `.mdx` 文件：
 
-```markdown
+```mdx
 ---
 title: 文章标题
-description: 文章简介
-date: 2026-05-30
+description: 文章描述
+date: 2026-01-15
 tags: [标签1, 标签2]
 ---
 
-## 正文标题
+# 文章标题
 
 正文内容...
 ```
 
-### 第二步：添加到博客列表
+> [!NOTE]
+> 博客列表页 (`blog/index.mdx`) 会自动读取 `blog/` 目录下的所有文章并展示。
 
-打开 `src/content/docs/blog/index.mdx`，在 `<div class="blog-list">` 中添加：
+#### 更新侧边栏导航
 
-```html
-<div class="blog-post-item">
-  <a href="/blog/my-post">
-    <div class="blog-post-title">文章标题</div>
-  </a>
-  <div class="blog-post-meta">
-    <span>📅 2026-05-30</span>
-    <span>⏱️ 5 分钟</span>
-  </div>
-  <div class="blog-post-desc">文章简介</div>
-  <div class="blog-post-tags">
-    <span class="blog-tag">标签</span>
-  </div>
-</div>
+编辑 `astro.config.mjs` 中的 `sidebar` 数组：
+
+```javascript
+sidebar: [
+  { label: '首页', link: '/' },
+  { label: '关于我', link: '/about' },
+  // 添加新页面...
+]
 ```
 
-### 第三步：更新 RSS
+#### 更新社交链接
 
-编辑 `public/rss.xml`，在 `<channel>` 中添加 `<item>` 条目。
+编辑 `astro.config.mjs` 中的 `social` 对象：
 
-### 第四步：推送
-
-```bash
-git add -A && git commit -m "发布博客：文章标题" && git push
+```javascript
+social: [
+  { icon: 'github', href: 'https://github.com/yunLin0', label: 'GitHub' },
+  // 添加新链接...
+]
 ```
 
----
+#### 修改背景图
 
-## 💬 管理留言板
+1. 替换 `public/images/bg.jpg` 为你自己的图片
+2. 在 `astro.config.mjs` 的 head 配置中调整透明度（`opacity: 0.35`）
 
-留言板通过 GitHub Discussions 实现。
+#### 修改主题颜色
 
-**首次使用**：去仓库开启 Discussions：
-仓库 → Settings → General → Features → 勾选 Discussions
-
-之后访问 https://github.com/yunLin0/yunLin0.github.io/discussions 查看和回复留言。
-
----
-
-## 📊 查看访客统计
-
-1. 访问 https://cloud.umami.is
-2. 登录后点击 yunlin0 查看数据
-
----
-
-## 🎨 修改样式
-
-### 改颜色
-
-编辑 `src/styles/custom.css`，找到 `:root` 部分：
+编辑 `src/styles/custom.css` 中的 CSS 变量：
 
 ```css
 :root {
-  --sl-color-accent: #0ea5e9;        /* 主色调 */
-  --sl-color-accent-high: #0284c7;   /* 深色 */
-  --sl-color-accent-low: #e0f2fe;    /* 浅色背景 */
+  --sl-color-accent: #4F46E5;        /* 主色调 */
+  --sl-color-accent-high: #4338CA;   /* 悬停色 */
+  /* 更多颜色变量... */
 }
 ```
 
-### 改网站标题和导航
+### 二、GitHub 仓库自动获取
 
-编辑 `astro.config.mjs`：
+`public/js/github-repos.js` 会自动从 GitHub API 拉取你的公开仓库并展示在项目页。
 
-```javascript
-starlight({
-  title: '你的标题',
-  sidebar: [
-    { label: '首页', link: '/' },
-    { label: '新页面', link: '/new-page' },  // 添加新页面
-  ],
-  social: [
-    { icon: 'github', label: 'GitHub', href: 'https://github.com/你的用户名' },
-    { icon: 'email', label: 'Email', href: 'mailto:你的邮箱' },
-  ],
-})
+如需排除某些仓库，在 `projects.mdx` 中修改过滤列表：
+
+```html
+<script is:inline src="/js/github-repos.js"
+  data-exclude="repo1,repo2,yunLin0.github.io">
+</script>
 ```
 
----
+### 三、留言板配置
 
-## 📖 添加新页面
+留言板基于 GitHub Discussions 实现，确保：
 
-### 第一步：创建文件
+1. 仓库已启用 **Discussions** 功能（Settings → Features → Discussions）
+2. `public/js/guestbook.js` 中的仓库名正确
 
-在 `src/content/docs/` 下新建 `.mdx` 文件：
+### 四、访客统计 (Umami)
 
-```markdown
----
-title: 新页面
-description: 页面描述
----
+1. 登录 [Umami Cloud](https://cloud.umami.is)
+2. 在 `astro.config.mjs` 中替换 Website ID：
+   ```javascript
+   { tag: 'script', attrs: { src: 'https://analytics.umami.is/script.js', 'data-website-id': '你的ID' } }
+   ```
+3. 访问 Umami 控制台查看数据
 
-内容...
-```
-
-### 第二步：添加到导航
-
-编辑 `astro.config.mjs`，在 `sidebar` 数组中加一行。
-
-### 第三步：推送
+### 五、依赖更新
 
 ```bash
-git add -A && git commit -m "添加新页面" && git push
+# 检查可更新的依赖
+npm outdated
+
+# 更新所有依赖（谨慎，可能有破坏性变更）
+npm update
+
+# 更新 Astro 到最新大版本
+npm install astro@latest
+npm install @astrojs/starlight@latest
+
+# 安全检查
+npm audit
 ```
 
----
+> [!TIP]
+> 建议每月检查一次依赖更新，重大版本升级前先在本地测试。
 
-## 🚀 发布修改
-
-```bash
-cd yunLin0.github.io
-git add -A
-git commit -m "说明改了什么"
-git push
-```
-
-推送后等 1~2 分钟，GitHub Actions 自动构建部署。
-
----
-
-## 📚 需要学习的内容
-
-### 🟢 入门（立刻就能改）
-
-| 内容 | 学习时间 | 说明 |
-|------|----------|------|
-| **Markdown 语法** | 30 分钟 | [中文教程](https://markdown.com.cn) |
-| **HTML 基础标签** | 1 小时 | [MDN 教程](https://developer.mozilla.org/zh-CN/docs/Learn/HTML) |
-| **git 基本操作** | 30 分钟 | `add`、`commit`、`push` 三个命令 |
-
-### 🟡 进阶（想自定义更多）
-
-| 内容 | 学习时间 | 说明 |
-|------|----------|------|
-| **CSS 基础** | 2~3 小时 | [CSS 教程](https://developer.mozilla.org/zh-CN/docs/Learn/CSS) |
-| **Astro 入门** | 2~3 小时 | [Astro 文档](https://docs.astro.build/zh-cn/) |
-| **Starlight 组件** | 1~2 小时 | [Starlight 文档](https://starlight.astro.build/zh-cn/) |
-
-### 🔴 高级（想深度定制）
-
-| 内容 | 学习时间 | 说明 |
-|------|----------|------|
-| **JavaScript 基础** | 1~2 周 | 添加交互功能 |
-| **响应式设计** | 2~3 天 | 适配手机和平板 |
-| **Astro 组件开发** | 3~5 天 | 创建自定义组件 |
-
----
-
-## ❓ 常见问题
-
-### Q: 我改了文件但网站没变化？
-
-1. 确认已经 `git push`
-2. 去 https://github.com/yunLin0/yunLin0.github.io/actions 查看部署状态
-3. 等 1~2 分钟，`Ctrl + Shift + R` 强制刷新
-
-### Q: 本地预览？
-
-```bash
-cd yunLin0.github.io
-npm install
-npm run dev
-```
-
-打开 http://localhost:4321
-
-### Q: 背景图不显示？
-
-1. 确认图片在 `public/images/bg.jpg`
-2. 右下角滑块调到 100% 试试
-3. 检查浏览器控制台是否有 404 错误
-
-### Q: 怎么换背景图？
-
-1. 新图片保存为 `public/images/bg.jpg`
-2. 推送即可，无需改代码
-
-### Q: 留言板不能用？
-
-去仓库 Settings → Features → 开启 Discussions
-
-### Q: 搜索引擎收录？
-
-提交 sitemap：`https://yunlin0.github.io/sitemap-index.xml`
-
----
-
-## 📋 快速参考
+### 六、部署流程
 
 ```
-┌─────────────────────────────────────────────────┐
-│  日常修改流程                                     │
-│                                                   │
-│  1. 编辑 src/content/docs/ 下的 .mdx 文件         │
-│  2. git add -A                                    │
-│  3. git commit -m "说明改了什么"                   │
-│  4. git push                                      │
-│  5. 等 1~2 分钟，刷新网站                         │
-│                                                   │
-├─────────────────────────────────────────────────┤
-│  本地预览                                         │
-│                                                   │
-│  npm run dev    →  http://localhost:4321          │
-│                                                   │
-├─────────────────────────────────────────────────┤
-│  文件速查                                         │
-│                                                   │
-│  改内容    → src/content/docs/*.mdx               │
-│  写博客    → src/content/docs/blog/*.mdx          │
-│  改样式    → src/styles/custom.css                │
-│  改配置    → astro.config.mjs                     │
-│  换背景    → public/images/bg.jpg                 │
-│  更新 RSS  → public/rss.xml                       │
-│  改脚本    → public/js/*.js                       │
-│                                                   │
-├─────────────────────────────────────────────────┤
-│  功能速查                                         │
-│                                                   │
-│  背景图    → public/images/bg.jpg（滑块调透明度）  │
-│  暗色模式  → 自带，改色在 custom.css               │
-│  搜索      → 自带（⌘K）                           │
-│  博客      → blog/ 目录 + blog/index.mdx          │
-│  留言板    → guestbook.mdx + GitHub Discussions    │
-│  项目卡片  → 自动拉取 GitHub 仓库                  │
-│  RSS       → public/rss.xml 手动更新               │
-│  统计      → astro.config.mjs 中的 Umami ID       │
-│  进度条    → 自动                                  │
-│                                                   │
-└─────────────────────────────────────────────────┘
+git push → GitHub Actions 自动构建 → 部署到 GitHub Pages
 ```
 
+无需手动部署，推送到 `main` 分支即自动发布。GitHub Actions 工作流定义在 `.github/workflows/deploy.yml`。
+
+### 七、常见问题排查
+
+| 问题 | 解决方案 |
+|------|---------|
+| 样式没生效 | `Ctrl+Shift+R` 强制刷新（浏览器缓存问题） |
+| 构建报错 | 检查 Node.js 版本 >= 18 |
+| 背景图不显示 | 确认 `public/images/bg.jpg` 存在且路径正确 |
+| 留言板打不开 | 仓库需先启用 Discussions 功能 |
+| 搜索不工作 | 运行 `npm run build` 后搜索索引才会更新 |
+
 ---
 
-## 🔗 相关链接
+## 📚 学习路线
 
-- [Astro 文档](https://docs.astro.build/zh-cn/)
-- [Starlight 文档](https://starlight.astro.build/zh-cn/)
-- [Markdown 教程](https://markdown.com.cn)
-- [Umami 统计](https://umami.is)
-- [GitHub Discussions](https://docs.github.com/zh/discussions)
+<details>
+<summary><b>🟢 第一阶段：前端基础</b></summary>
+
+- **HTML5**：语义化标签、表单、多媒体
+- **CSS3**：Flexbox、Grid 布局、动画、变量
+- **JavaScript**：ES6+ 语法、DOM 操作、异步编程
+- **Git**：版本控制、分支管理、Pull Request
+
+**推荐资源**：
+- [MDN Web Docs](https://developer.mozilla.org/zh-CN/)
+- [freeCodeCamp](https://www.freecodecamp.org/)
+- [JavaScript.info](https://javascript.info/)
+</details>
+
+<details>
+<summary><b>🔵 第二阶段：CSS 进阶</b></summary>
+
+- **Tailwind CSS / UnoCSS**：原子化 CSS 框架
+- **CSS Modules**：作用域样式隔离
+- **响应式设计**：媒体查询、容器查询
+- **CSS 变量与主题系统**
+
+**推荐资源**：
+- [Tailwind CSS 官方文档](https://tailwindcss.com/docs)
+- [CSS-Tricks](https://css-tricks.com/)
+</details>
+
+<details>
+<summary><b>🟠 第三阶段：Astro 框架</b></summary>
+
+- **Islands Architecture**：按需水合，极致性能
+- **Content Collections**：类型安全的 Markdown/MDX
+- **文件路由与布局系统**
+- **SSG vs SSR**：静态生成与服务端渲染
+
+**推荐资源**：
+- [Astro 官方文档](https://docs.astro.build/zh-cn/)
+- [Astro 中文教程](https://docs.astro.build/zh-cn/getting-started/)
+</details>
+
+<details>
+<summary><b>🟣 第四阶段：UI 框架集成</b></summary>
+
+- 在 Astro 中使用 **React / Vue / Svelte / Solid** 作为交互岛屿
+- 组件通信与状态管理
+- 选择合适的框架场景
+
+**推荐资源**：
+- [React 官方文档](https://react.dev/)
+- [Vue.js 官方文档](https://cn.vuejs.org/)
+- [Svelte 教程](https://svelte.dev/tutorial)
+</details>
+
+<details>
+<summary><b>🔴 第五阶段：内容与数据</b></summary>
+
+- **MDX**：在 Markdown 中使用 JSX 组件
+- **Astro Content Collections**：类型安全内容管理
+- **数据获取模式**：静态数据 + API 调用
+- **RSS 订阅**实现
+
+**推荐资源**：
+- [MDX 官方文档](https://mdxjs.com/)
+- [Astro Content Collections](https://docs.astro.build/guides/content-collections/)
+</details>
+
+<details>
+<summary><b>🟡 第六阶段：部署与优化</b></summary>
+
+- **GitHub Pages / Vercel / Netlify / Cloudflare Pages**
+- **Lighthouse 审计**与性能优化
+- **SEO**：Meta 标签、Open Graph、Sitemap
+- **View Transitions API**：页面切换动画
+
+**推荐资源**：
+- [Web.dev 性能指南](https://web.dev/performance)
+- [PageSpeed Insights](https://pagespeed.web.dev/)
+</details>
+
+<details>
+<summary><b>⚪ 第七阶段：进阶方向</b></summary>
+
+- **Starlight 文档站**（本项目所用）
+- **Astro Middleware**：请求拦截与处理
+- **PWA**：渐进式 Web 应用
+- **i18n 国际化**：多语言支持
+- **数据库集成**：Supabase / Turso
+
+**推荐资源**：
+- [Starlight 官方文档](https://starlight.astro.build/zh-cn/)
+- [Astro GitHub](https://github.com/withastro/astro)
+</details>
 
 ---
 
-> 💡 **记住：你 90% 的操作只是编辑 `.mdx` 文件然后 `git push`，不需要学任何编程语言。**
+## 🗺️ 路线图
 
-有问题随时问我！
+- [x] 基础页面（首页、关于、技能、项目、经历、联系）
+- [x] 博客系统 + 标签分类
+- [x] GitHub 仓库自动获取
+- [x] 深色模式 + 背景图 + 毛玻璃效果
+- [x] 全文搜索 (Pagefind)
+- [x] 访客统计 (Umami)
+- [x] RSS 订阅
+- [x] 留言板 (GitHub Discussions)
+- [x] 阅读进度条
+- [ ] 评论系统 (Giscus)
+- [ ] 多语言 (i18n)
+- [ ] PWA 支持
+- [ ] 动画与视图过渡
+
+## 📄 许可证
+
+本项目基于 [MIT License](LICENSE) 开源。
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [yunLin](https://github.com/yunLin0)**
+
+[![GitHub](https://img.shields.io/badge/GitHub-yunLin0-181717?logo=github)](https://github.com/yunLin0)
+[![Email](https://img.shields.io/badge/Email-z__jialin0%40163.com-EA4335?logo=gmail&logoColor=white)](mailto:z_jialin0@163.com)
+
+</div>
